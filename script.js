@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const audioElement = document.getElementById('background-music');
 
     const musicTracks = {
+        section1: { file: 'Tan Dun.mp3', startTime: 0 },
         section2: { file: 'Cowherd Flute.mp3', startTime: 0 },
         section3: { file: 'White Hair Girl.mp3', startTime: 0 },
         section4: { file: 'Butterfly Lovers.mp3', startTime: 15 },
