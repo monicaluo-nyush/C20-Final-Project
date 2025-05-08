@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const audioElement = document.getElementById('background-music');
 
     const musicTracks = {
-        section1: { file: 'Tan Dun.mp3', startTime: 0 },
         section2: { file: 'Cowherd Flute.mp3', startTime: 0 },
         section3: { file: 'White Hair Girl.mp3', startTime: 0 },
         section4: { file: 'Butterfly Lovers.mp3', startTime: 15 },
@@ -17,22 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentTrack = '';
     let currentSection = '';
     const playbackPositions = {};
-
-    // Initialize background music for start page
-    const startPageMusic = 'Tan Dun.mp3';
-    audioElement.src = startPageMusic;
-    audioElement.loop = true;
-    audioElement.volume = 0.5;
-
-    audioElement.oncanplaythrough = () => {
-        console.log("Start page music ready to play");
-        audioElement.play().catch(err => console.log("Audio playback error:", err));
-    };
-
-    audioElement.onerror = (err) => {
-        console.log("Error loading start page music:", err);
-    };
-
     // Start button listener
     startBtn.addEventListener('click', () => {
         startPage.style.display = 'none';
