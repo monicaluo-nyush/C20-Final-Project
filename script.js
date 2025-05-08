@@ -5,15 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const audioElement = document.getElementById('background-music');
 
     const musicTracks = {
-        section1: {file: 'Tan Dun.mp3', startTime:0 },
         section2: { file: 'Cowherd Flute.mp3', startTime: 0 },
         section3: { file: 'White Hair Girl.mp3', startTime: 0 },
-        section4: { file: 'Butterfly Lovers.mp3', startTime: 0 },
+        section4: { file: 'Butterfly Lovers.mp3', startTime: 15 },
         section5: { file: 'Dream.mp3', startTime: 0 },
         section6: { file: 'Peking Fantasy.mp3', startTime: 0 },
         section7: { file: 'Gong Viola.mp3', startTime: 0 },
     };
-    
 
     let currentTrack = '';
     let currentSection = '';
@@ -24,7 +22,15 @@ document.addEventListener("DOMContentLoaded", function () {
     audioElement.src = startPageMusic;
     audioElement.loop = true;
     audioElement.volume = 0.5;
-    audioElement.play().catch(err => console.log("Audio playback error:", err));
+
+    audioElement.oncanplaythrough = () => {
+        console.log("Start page music ready to play");
+        audioElement.play().catch(err => console.log("Audio playback error:", err));
+    };
+
+    audioElement.onerror = (err) => {
+        console.log("Error loading start page music:", err);
+    };
 
     // Start button listener
     startBtn.addEventListener('click', () => {
@@ -32,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         essayPage.style.display = 'block';
 
         if (audioElement.paused) {
+            console.log("Starting the music");
             audioElement.play().catch(err => console.log("Audio playback error:", err));
         }
     });
@@ -118,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener('load', checkAndPlayMusic);
 
-    //  Italicize specific phrases in paragraphs and headings
+    // Italicize specific phrases in paragraphs and headings
     function italicizePhrases() {
         const phrasesToItalicize = [
             "White Hair Girl",
@@ -145,5 +152,5 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    italicizePhrases(); 
+    italicizePhrases();
 });
