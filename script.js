@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const musicTracks = {
         section2: { file: 'Cowherd Flute.mp3', startTime: 0 },
-        section3: { file: 'White Hair Girl.mp3', startTime: 300 },
-        section4: { file: 'Butterfly Lovers.mp3', startTime: 30 },
+        section3: { file: 'White Hair Girl.mp3', startTime: 0 },
+        section4: { file: 'Butterfly Lovers.mp3', startTime: 0 },
         section5: { file: 'Dream.mp3', startTime: 0 },
-        section6: { file: 'Peking Fantasy.mp3', startTime: 163 },
-        section7: { file: 'Gong Viola.mp3', startTime: 735 },
+        section6: { file: 'Peking Fantasy.mp3', startTime: 0 },
+        section7: { file: 'Gong Viola.mp3', startTime: 0 },
     };
     
 
