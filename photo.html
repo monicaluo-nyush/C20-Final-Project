@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Comparison Slider</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    .photo-comparison-container {
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+    }
+
+    .photo-comparison-container h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .photo-comparison {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .photo-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .old-photo {
+        z-index: 1;
+        clip-path: inset(0 50% 0 0);
+    }
+
+    .new-photo {
+        z-index: 2;
+        clip-path: inset(0 0 0 50%);
+    }
+
+    .comparison-slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        opacity: 0;
+        z-index: 3;
+        cursor: pointer;
+    }
+
+    .slider-handle {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 4px;
+        height: 100%;
+        background-color: #FFD700;
+        z-index: 4;
+        pointer-events: none;
+    }
+
+    .slider-handle::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #FFD700;
+        border: 2px solid white;
+    }
+
+    .comparison-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        font-size: 0.9em;
+        color: #666;
+    }
+
+    @media (max-width: 900px) {
+        .photo-comparison {
+            height: 250px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="photo-comparison-container">
+    <h3>Ballet Evolution Comparison</h3>
+    <div class="photo-comparison">
+        <div class="photo-wrapper">
+            <img src="Old WHG.png" alt="Original White Hair Girl Ballet" class="photo old-photo">
+            <img src="New WHG.png" alt="Modern White Hair Girl Ballet" class="photo new-photo">
+        </div>
+        <input type="range" min="0" max="100" value="50" class="comparison-slider">
+        <div class="slider-handle"></div>
+    </div>
+    <div class="comparison-labels">
+        <span>Modern Production</span>
+        <span>Original Interpretation</span>
+    </div>
+</div>
+
+<script>
+const slider = document.querySelector('.comparison-slider');
+const oldPhoto = document.querySelector('.old-photo');
+const newPhoto = document.querySelector('.new-photo');
+const handle = document.querySelector('.slider-handle');
+
+slider.addEventListener('input', (e) => {
+    const value = e.target.value;
+    oldPhoto.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+    newPhoto.style.clipPath = `inset(0 0 0 ${value}%)`;
+    handle.style.left = value + '%';
+});
+</script>
+
+</body>
+</html>
